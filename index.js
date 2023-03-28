@@ -33,12 +33,9 @@ app.get('/', (req, res) => {
 });
 
 // GET data by ID
-app.get('/:id', (req, res) => {
-  const id = req.params.id;
-  const item = data.find(item => item.id === id);
-  if (!item) {
-    return res.status(404).send('Item not found');
-  }
+app.get('/:id', (req,res) =>{
+  const item = data.find(item => item.id === parseInt(req.params.id));
+  if (!item) return res.status(404).send('Item not found');
   res.send(item);
 });
 
