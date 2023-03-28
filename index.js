@@ -9,7 +9,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // define an array to store our data
-let data = [];
+const data = [
+  { id: 1, name: "hadeel" },
+  { id: 2, name: "amajd" },
+  { id: 3, name: "maria" },
+];
 
 // error handling middleware
 app.use((err, req, res, next) => {
