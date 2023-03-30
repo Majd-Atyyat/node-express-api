@@ -25,14 +25,18 @@ app.get("/", async (req, res) => {
 });
 
 //get specific employee
-app.get("/:emp_id", async (req, res) => {
-  const emp_id = req.params.emp_id;
+app.get('/emp_id', async (req, res) => {
+  const emp_id = req.params.emp_id; // Get the ID from the URL parameter
   try {
-    await pool.query("select * from employee WHERE emp_id = $1", [emp_id]);
-    res.json({ message: "Data selected successfully" });
+    const { rows } = await pool.query('SELECT * FROM employee WHERE emp_id = $1', [emp_id]);
+    if (rows.length === 0) {
+      res.status(404).json({ message: 'Employee not found' });
+    } else {
+      res.status(200).json(rows[0]);
+    }
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal server error" });
+    console.log(error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 });
 
