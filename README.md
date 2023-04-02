@@ -1,6 +1,6 @@
 # node-express-api
 # REST API created with express.js
-connected to Postgre databases
+connected to PostgreSQL  databases
 
 GET all data: GET https://majd-pwc-express-node-restapi.onrender.com/items
 
